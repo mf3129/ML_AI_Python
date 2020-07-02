@@ -10,7 +10,7 @@ dataset = pd.read_csv('Ads_CTR_Optimisation.csv')
 
 # Implementing Thompson Sampling
 import random
-N = 10000
+N = 500
 d = 10
 ads_selected = []
 numbers_of_rewards_1 = [0] * d
@@ -25,7 +25,7 @@ for n in range(0, N):
             max_random = random_beta
             ad = i
     ads_selected.append(ad)
-    reward = dataset.values[n, ad]
+    reward = dataset.values[n, ad] #grabing for the dataset the numerical value count - n being row and ad being the amount of times it was selected.
     if reward == 1:
         numbers_of_rewards_1[ad] = numbers_of_rewards_1[ad] + 1
     else:
@@ -34,7 +34,7 @@ for n in range(0, N):
 
 # Visualising the results - Histogram
 plt.hist(ads_selected)
-plt.title('Histogram of ads selections')
+plt.title('Thompson Histogram of ads selections')
 plt.xlabel('Ads')
 plt.ylabel('Number of times each ad was selected')
 plt.show()
